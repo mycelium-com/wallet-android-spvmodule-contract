@@ -97,6 +97,7 @@ public class TransactionContract {
         public static final String _ID = "_id";
 
         public static final String ADDRESS = "address";
+        public static final String ADDRESS_QR = "addressQr";
 
         public static final String ACCOUNT_INDEX = "accountIndex";
 
