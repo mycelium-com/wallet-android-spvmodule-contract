@@ -11,7 +11,6 @@ import org.jetbrains.annotations.Nullable;
  * for the supported URIs and columns.
  */
 public class TransactionContract {
-
     public static class TransactionSummary {
         public static final String TABLE_NAME = "txn"; // "transaction" is an SQL reserved word.
         public static final String CONTENT_TYPE = ContentResolver.CURSOR_DIR_BASE_TYPE + "/vnd.com.mycelium.transaction";
@@ -35,7 +34,6 @@ public class TransactionContract {
 
         public static final String SELECTION_SINGLE_ADDRESS_ACCOUNT_GUID = SINGLE_ADDRESS_ACCOUNT_GUID + " = ?";
 
-        @Nullable
         public static final String SELECTION_ID = SELECTION_ACCOUNT_INDEX + " AND " + _ID
             + " = ?";
 
@@ -49,7 +47,6 @@ public class TransactionContract {
         public static final String CONTENT_TYPE = ContentResolver.CURSOR_DIR_BASE_TYPE + "/vnd.com.mycelium.transaction";
 
         public static final String _ID = "_id";
-
         public static final String TIME = "time";
         public static final String HEIGHT = "height";
         public static final String ACCOUNT_INDEX = "accountIndex";
@@ -72,13 +69,10 @@ public class TransactionContract {
         public static final String CONTENT_TYPE = ContentResolver.CURSOR_DIR_BASE_TYPE + "/vnd.com.mycelium.transaction";
 
         public static final String _ID = "_id";
-
         public static final String CONFIRMED = "confirmed";
         public static final String SENDING = "sending";
         public static final String RECEIVING = "receiving";
-
         public static final String ACCOUNT_INDEX = "accountIndex";
-
         public static final String SINGLE_ADDRESS_ACCOUNT_GUID = "singleAddressAccountGUID";
 
         public static final String SELECTION_ACCOUNT_INDEX = ACCOUNT_INDEX + " = ?";
@@ -95,12 +89,9 @@ public class TransactionContract {
         public static final String CONTENT_TYPE = ContentResolver.CURSOR_DIR_BASE_TYPE + "/vnd.com.mycelium.address";
 
         public static final String _ID = "_id";
-
         public static final String ADDRESS = "address";
         public static final String ADDRESS_QR = "addressQr";
-
         public static final String ACCOUNT_INDEX = "accountIndex";
-
         public static final String SINGLE_ADDRESS_ACCOUNT_GUID = "singleAddressAccountGUID";
 
         public static final String SELECTION_ACCOUNT_INDEX = ACCOUNT_INDEX + " = ?";
@@ -118,7 +109,6 @@ public class TransactionContract {
 
         public static final String QR_CODE = "qrCode";
         public static final String IS_VALID = "isValid";
-
         public static final String ACCOUNT_INDEX = "accountIndex";
 
         public static final String SELECTION_ACCOUNT_INDEX = ACCOUNT_INDEX + " = ?";
@@ -138,7 +128,6 @@ public class TransactionContract {
         public static final String TX_FEE = "txFee";
         public static final String TX_FEE_FACTOR = "txFeeFactor";
         public static final String MAX_SPENDABLE = "maxSpendable";
-
         public static final String ACCOUNT_INDEX = "accountIndex";
 
         public static final String SELECTION_ACCOUNT_INDEX = ACCOUNT_INDEX + " = ?";
@@ -159,7 +148,6 @@ public class TransactionContract {
         public static final String TX_FEE_FACTOR = "txFeeFactor";
         public static final String AMOUNT_TO_SEND = "amountToSend";
         public static final String RESULT = "result";
-
         public static final String ACCOUNT_INDEX = "accountIndex";
 
         public static final String SELECTION_ACCOUNT_INDEX = ACCOUNT_INDEX + " = ?";
