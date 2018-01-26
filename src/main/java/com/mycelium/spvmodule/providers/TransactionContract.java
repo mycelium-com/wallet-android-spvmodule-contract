@@ -167,6 +167,22 @@ public class TransactionContract {
         }
     }
 
+    public static class ValidateAddress {
+        public static final String TABLE_NAME = "validateaddress";
+        public static final String CONTENT_TYPE = ContentResolver.CURSOR_DIR_BASE_TYPE + "/vnd.com.mycelium.address";
+
+        public static final String ADDRESS = "address";
+        public static final String IS_VALID = "isValid";
+
+        public static final String SELECTION_ADDRESS = ADDRESS + " = ?";
+
+        public static final String SELECTION_COMPLETE = SELECTION_ADDRESS;
+
+        public static Uri CONTENT_URI(String packageName) {
+            return Uri.withAppendedPath(AUTHORITY_URI(packageName), TABLE_NAME);
+        }
+    }
+
     public static String AUTHORITY(String packageName) {
         return packageName + ".providers.TransactionContentProvider";
     }
