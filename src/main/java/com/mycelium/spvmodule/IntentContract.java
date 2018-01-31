@@ -35,6 +35,7 @@ public interface IntentContract {
 
         public static Intent createIntent(String accountGuid, int accountId) {
             Intent intent = new Intent(ACTION);
+            intent.putExtra(IntentContract.ACCOUNT_GUID, accountGuid);
             intent.putExtra(IntentContract.ACCOUNT_INDEX_EXTRA, accountId);
             return intent;
         }
