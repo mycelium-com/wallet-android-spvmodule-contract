@@ -10,6 +10,7 @@ import java.util.ArrayList;
  */
 public interface IntentContract {
     String ACCOUNT_INDEX_EXTRA = "ACCOUNT_INDEX";
+    String ACCOUNT_GUID = "ACCOUNT_GUID";
     String SINGLE_ADDRESS_ACCOUNT_GUID = "SINGLE_ADDRESS_ACCOUNT_GUID";
     String SATOSHIS_RECEIVED = "satoshisReceived";
     String SATOSHIS_SENT = "satoshisSent";
@@ -32,7 +33,7 @@ public interface IntentContract {
     class ReceiveTransactions {
         public static final String ACTION = "com.mycelium.wallet.receiveTransactions";
 
-        public static Intent createIntent(int accountId) {
+        public static Intent createIntent(String accountGuid, int accountId) {
             Intent intent = new Intent(ACTION);
             intent.putExtra(IntentContract.ACCOUNT_INDEX_EXTRA, accountId);
             return intent;
@@ -54,8 +55,9 @@ public interface IntentContract {
         public static final String SPENDING_KEY_B58_EXTRA = ACTION + "_spendingkeyb58";
         public static final String CREATION_TIME_SECONDS_EXTRA = ACTION + "_creationTimeSeconds";
 
-        public static Intent createIntent(int accountId, String spendingKeyB58, long creationTimeSeconds) {
+        public static Intent createIntent(String accountGuid, int accountId, String spendingKeyB58, long creationTimeSeconds) {
             Intent intent = new Intent(ACTION);
+            intent.putExtra(IntentContract.ACCOUNT_GUID, accountGuid);
             intent.putExtra(IntentContract.ACCOUNT_INDEX_EXTRA, accountId);
             intent.putExtra(SPENDING_KEY_B58_EXTRA, spendingKeyB58);
             intent.putExtra(CREATION_TIME_SECONDS_EXTRA, creationTimeSeconds);
@@ -108,8 +110,9 @@ public interface IntentContract {
         public static final String FEE_EXTRA = ACTION + "_fee";
         public static final String FEE_FACTOR_EXTRA = ACTION + "_fee_factor";
 
-        public static Intent createIntent(int accountId, String address, long amount, TransactionFee txFee, float txFeeFactor) {
+        public static Intent createIntent(String accountGuid, int accountId, String address, long amount, TransactionFee txFee, float txFeeFactor) {
             Intent intent = new Intent(ACTION);
+            intent.putExtra(IntentContract.ACCOUNT_GUID, accountGuid);
             intent.putExtra(IntentContract.ACCOUNT_INDEX_EXTRA, accountId);
             intent.putExtra(ADDRESS_EXTRA, address);
             intent.putExtra(AMOUNT_EXTRA, amount);
@@ -142,15 +145,17 @@ public interface IntentContract {
         public static final String RESULT_ACTION = "com.mycelium.wallet.waitingIntentsResult";
         public static final String WAITING_ACTIONS = ACTION + "_actions";
 
-        public static Intent createResultIntent(int accountId, String[] waitingActions) {
+        public static Intent createResultIntent(String accountGuid, int accountId, String[] waitingActions) {
             Intent intent = new Intent(RESULT_ACTION);
+            intent.putExtra(IntentContract.ACCOUNT_GUID, accountGuid);
             intent.putExtra(IntentContract.ACCOUNT_INDEX_EXTRA, accountId);
             intent.putExtra(WAITING_ACTIONS, waitingActions);
             return intent;
         }
 
-        public static Intent createIntent(int accountId) {
+        public static Intent createIntent(String accountGuid, int accountId) {
             Intent intent = new Intent(ACTION);
+            intent.putExtra(IntentContract.ACCOUNT_GUID, accountGuid);
             intent.putExtra(IntentContract.ACCOUNT_INDEX_EXTRA, accountId);
             return intent;
         }
