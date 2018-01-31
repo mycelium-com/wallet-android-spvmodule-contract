@@ -162,6 +162,16 @@ public interface IntentContract {
         }
     }
 
+    class RemoveHDWalletAccount {
+        public static final String ACTION = "com.mycelium.wallet.removeHDWalletAccount";
+
+        public static Intent createIntent(String guid) {
+            Intent intent = new Intent(ACTION);
+            intent.putExtra(IntentContract.ACCOUNT_GUID, guid);
+            return intent;
+        }
+    }
+
     class RemoveSingleAddressWalletAccount {
         public static final String ACTION = "com.mycelium.wallet.removeSingleAddressWalletAccount";
 
@@ -170,6 +180,5 @@ public interface IntentContract {
             intent.putExtra(IntentContract.SINGLE_ADDRESS_ACCOUNT_GUID, guid);
             return intent;
         }
-
     }
 }
