@@ -1,5 +1,7 @@
 package com.mycelium.spvmodule.providers.data
 
-/**
- * Created by itserg on 02.02.18.
- */
+import android.database.MatrixCursor
+import com.mycelium.spvmodule.providers.TransactionContract
+
+class GetPrivateKeysCountCursor : MatrixCursor(arrayOf(
+        TransactionContract.GetPrivateKeysCount.KEYS_COUNT), 1)
