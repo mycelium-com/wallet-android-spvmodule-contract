@@ -193,6 +193,17 @@ public class TransactionContract {
         }
     }
 
+
+    public static class GetPrivateKeysCount {
+        public static final String TABLE_NAME = "getprivatekeyscount";
+
+        public static final String KEYS_COUNT = "keysCount";
+
+        public static Uri CONTENT_URI(String packageName) {
+            return Uri.withAppendedPath(AUTHORITY_URI(packageName), TABLE_NAME);
+        }
+    }
+
     public static String AUTHORITY(String packageName) {
         return packageName + ".providers.TransactionContentProvider";
     }
