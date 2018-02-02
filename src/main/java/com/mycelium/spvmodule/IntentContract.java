@@ -156,6 +156,16 @@ public interface IntentContract {
         }
     }
 
+    class RemoveHdWalletAccount {
+        public static final String ACTION = "com.mycelium.wallet.removeHdWalletAccount";
+
+        public static Intent createIntent(int accountId) {
+            Intent intent = new Intent(ACTION);
+            intent.putExtra(IntentContract.ACCOUNT_INDEX_EXTRA, accountId);
+            return intent;
+        }
+    }
+
     class RemoveSingleAddressWalletAccount {
         public static final String ACTION = "com.mycelium.wallet.removeSingleAddressWalletAccount";
 
