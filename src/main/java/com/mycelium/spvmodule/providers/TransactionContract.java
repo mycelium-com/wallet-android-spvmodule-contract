@@ -19,6 +19,7 @@ public class TransactionContract {
         public static final String VALUE = "value";
         public static final String IS_INCOMING = "isIncoming";
         public static final String TIME = "time";
+        public static final String SINCE = "since";
         public static final String HEIGHT = "height";
         public static final String CONFIRMATIONS = "confirmations";
         public static final String IS_QUEUED_OUTGOING = "isQueuedOutgoing";
@@ -31,8 +32,12 @@ public class TransactionContract {
         public static final String SINGLE_ADDRESS_ACCOUNT_GUID = "singleAddressAccountGUID";
 
         public static final String SELECTION_ACCOUNT_INDEX = ACCOUNT_INDEX + " = ?";
+        public static final String SELECTION_ACCOUNT_INDEX_SINCE = SELECTION_ACCOUNT_INDEX +
+                " AND " + SINCE + " = ?";
 
         public static final String SELECTION_SINGLE_ADDRESS_ACCOUNT_GUID = SINGLE_ADDRESS_ACCOUNT_GUID + " = ?";
+        public static final String SELECTION_SINGLE_ADDRESS_ACCOUNT_GUID_SINCE = SINGLE_ADDRESS_ACCOUNT_GUID + " = ?" +
+                " AND " + SINCE + " = ?";
 
         public static final String SELECTION_ID = SELECTION_ACCOUNT_INDEX + " AND " + _ID
             + " = ?";
@@ -47,11 +52,14 @@ public class TransactionContract {
         public static final String CONTENT_TYPE = ContentResolver.CURSOR_DIR_BASE_TYPE + "/vnd.com.mycelium.transaction";
 
         public static final String _ID = "_id";
+        public static final String SINCE = "since";
         public static final String TIME = "time";
         public static final String HEIGHT = "height";
         public static final String ACCOUNT_INDEX = "accountIndex";
 
         public static final String SELECTION_ACCOUNT_INDEX = ACCOUNT_INDEX + " = ?";
+        public static final String SELECTION_ACCOUNT_INDEX_SINCE = SELECTION_ACCOUNT_INDEX +
+                " AND " + SINCE + " = ?";
         @NotNull
         public static final String RAW_SIZE = "rawSize";
         @NotNull
@@ -69,6 +77,7 @@ public class TransactionContract {
         public static final String CONTENT_TYPE = ContentResolver.CURSOR_DIR_BASE_TYPE + "/vnd.com.mycelium.transaction";
 
         public static final String _ID = "_id";
+        public static final String SINCE = "since";
         public static final String CONFIRMED = "confirmed";
         public static final String SENDING = "sending";
         public static final String RECEIVING = "receiving";
@@ -76,8 +85,12 @@ public class TransactionContract {
         public static final String SINGLE_ADDRESS_ACCOUNT_GUID = "singleAddressAccountGUID";
 
         public static final String SELECTION_ACCOUNT_INDEX = ACCOUNT_INDEX + " = ?";
+        public static final String SELECTION_ACCOUNT_INDEX_SINCE = SELECTION_ACCOUNT_INDEX +
+                " AND " + SINCE + " = ?";
 
         public static final String SELECTION_SINGLE_ADDRESS_ACCOUNT_GUID = SINGLE_ADDRESS_ACCOUNT_GUID + " = ?";
+        public static final String SELECTION_SINGLE_ADDRESS_ACCOUNT_GUID_SINCE = SINGLE_ADDRESS_ACCOUNT_GUID + " = ?" +
+                " AND " + SINCE + " = ?";
 
         public static Uri CONTENT_URI(String packageName) {
             return Uri.withAppendedPath(AUTHORITY_URI(packageName), TABLE_NAME);
