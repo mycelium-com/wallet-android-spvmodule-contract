@@ -49,6 +49,16 @@ public interface IntentContract {
         }
     }
 
+    class RequestPrivateExtendedKeyCoinTypeToMBW {
+        public static final String ACTION = "com.mycelium.wallet.requestPrivateExtendedKeyCoinTypeToMBW";
+
+        public static Intent createIntent(int accountId) {
+            Intent intent = new Intent(ACTION);
+            intent.putExtra(IntentContract.ACCOUNT_INDEX_EXTRA, accountId);
+            return intent;
+        }
+    }
+
     class RequestPrivateExtendedKeyCoinTypeToSPV {
         public static final String ACTION = "com.mycelium.wallet.requestPrivateExtendedKeyCoinTypeToSPV";
         public static final String SPENDING_KEY_B58_EXTRA = ACTION + "_spendingkeyb58";
