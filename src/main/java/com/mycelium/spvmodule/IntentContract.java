@@ -16,6 +16,8 @@ public interface IntentContract {
     String ACCOUNTS_INDEX = "accountsIndex";
     String OPERATION_ID = "operationId";
     String TRANSACTION_HASH = "transactionHash";
+    String IS_SUCCESS = "is_success";
+    String MESSAGE = "message";
     String TRANSACTIONS = "TRANSACTIONS";
     String CONNECTED_OUTPUTS = "CONNECTED_OUTPUTS";
     String UTXOS = "UTXOS";
