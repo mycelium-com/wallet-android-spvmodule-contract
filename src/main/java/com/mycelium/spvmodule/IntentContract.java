@@ -14,6 +14,10 @@ public interface IntentContract {
     String SATOSHIS_RECEIVED = "satoshisReceived";
     String SATOSHIS_SENT = "satoshisSent";
     String ACCOUNTS_INDEX = "accountsIndex";
+    String OPERATION_ID = "operationId";
+    String TRANSACTION_HASH = "transactionHash";
+    String IS_SUCCESS = "is_success";
+    String MESSAGE = "message";
     String TRANSACTIONS = "TRANSACTIONS";
     String CONNECTED_OUTPUTS = "CONNECTED_OUTPUTS";
     String UTXOS = "UTXOS";
@@ -103,14 +107,16 @@ public interface IntentContract {
 
     class SendFunds {
         public static final String ACTION = "com.mycelium.wallet.sendFunds";
+        public static final String OPERATION_ID = ACTION + "_opId";
         public static final String ADDRESS_EXTRA = ACTION + "_address";
         public static final String AMOUNT_EXTRA = ACTION + "_amount";
         public static final String FEE_EXTRA = ACTION + "_fee";
         public static final String FEE_FACTOR_EXTRA = ACTION + "_fee_factor";
 
-        public static Intent createIntent(int accountId, String address, long amount, TransactionFee txFee, float txFeeFactor) {
+        public static Intent createIntent(String operationId, int accountId, String address, long amount, TransactionFee txFee, float txFeeFactor) {
             Intent intent = new Intent(ACTION);
             intent.putExtra(IntentContract.ACCOUNT_INDEX_EXTRA, accountId);
+            intent.putExtra(OPERATION_ID, operationId);
             intent.putExtra(ADDRESS_EXTRA, address);
             intent.putExtra(AMOUNT_EXTRA, amount);
             intent.putExtra(FEE_EXTRA, txFee.name());
@@ -121,13 +127,15 @@ public interface IntentContract {
 
     class SendFundsSingleAddress {
         public static final String ACTION = "com.mycelium.wallet.sendFundsSingleAddress";
+        public static final String OPERATION_ID = ACTION + "_opId";
         public static final String ADDRESS_EXTRA = ACTION + "_address";
         public static final String AMOUNT_EXTRA = ACTION + "_amount";
         public static final String FEE_EXTRA = ACTION + "_fee";
         public static final String FEE_FACTOR_EXTRA = ACTION + "_fee_factor";
 
-        public static Intent createIntent(String guid, String address, long amount, TransactionFee fee, float txFeeFactor) {
+        public static Intent createIntent(String operationId, String guid, String address, long amount, TransactionFee fee, float txFeeFactor) {
             Intent intent = new Intent(ACTION);
+            intent.putExtra(OPERATION_ID, operationId);
             intent.putExtra(IntentContract.SINGLE_ADDRESS_ACCOUNT_GUID, guid);
             intent.putExtra(ADDRESS_EXTRA, address);
             intent.putExtra(AMOUNT_EXTRA, amount);
