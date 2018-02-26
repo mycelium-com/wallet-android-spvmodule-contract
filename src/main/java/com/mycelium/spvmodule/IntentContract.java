@@ -176,4 +176,13 @@ public interface IntentContract {
         }
 
     }
+
+    class ForceCacheClean {
+        public static final String ACTION = "com.mycelium.wallet.forceCacheClean";
+
+        public static Intent createIntent() {
+            Intent intent = new Intent(ACTION);
+            return intent;
+        }
+    }
 }
