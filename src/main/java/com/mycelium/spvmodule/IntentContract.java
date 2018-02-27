@@ -185,6 +185,7 @@ public interface IntentContract {
 
     }
 
+    //This intent should be called when app is first started to ensure that no old data related to old app installations remains in modules.
     class ForceCacheClean {
         public static final String ACTION = "com.mycelium.wallet.forceCacheClean";
 
