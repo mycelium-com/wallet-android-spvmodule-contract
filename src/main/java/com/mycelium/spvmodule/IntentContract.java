@@ -3,13 +3,16 @@ package com.mycelium.spvmodule;
 import android.content.Intent;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * The contract between the [SpvService] and clients. Contains definitions
  * for the supported Actions.
  */
 public interface IntentContract {
+    String ACCOUNT_INDEXES_EXTRA = "ACCOUNT_INDEXES";
     String ACCOUNT_INDEX_EXTRA = "ACCOUNT_INDEX";
+    String CREATIONTIMESECONDS = "CREATIONTIMESECONDS";
     String SINGLE_ADDRESS_ACCOUNT_GUID = "SINGLE_ADDRESS_ACCOUNT_GUID";
     String SATOSHIS_RECEIVED = "satoshisReceived";
     String SATOSHIS_SENT = "satoshisSent";
@@ -53,15 +56,15 @@ public interface IntentContract {
         }
     }
 
-    class RequestPrivateExtendedKeyCoinTypeToSPV {
-        public static final String ACTION = "com.mycelium.wallet.requestPrivateExtendedKeyCoinTypeToSPV";
-        public static final String SPENDING_KEY_B58_EXTRA = ACTION + "_spendingkeyb58";
+    class RequestAccountLevelKeysToSPV {
+        public static final String ACTION = "com.mycelium.wallet.requestAccountLevelKeysToSPV";
+        public static final String ACCOUNT_KEYS = ACTION + "_accountKeys";
         public static final String CREATION_TIME_SECONDS_EXTRA = ACTION + "_creationTimeSeconds";
 
-        public static Intent createIntent(int accountId, String spendingKeyB58, long creationTimeSeconds) {
+        public static Intent createIntent(List<Integer> accountIds, List<String> watchingKeysB58, long creationTimeSeconds) {
             Intent intent = new Intent(ACTION);
-            intent.putExtra(IntentContract.ACCOUNT_INDEX_EXTRA, accountId);
-            intent.putExtra(SPENDING_KEY_B58_EXTRA, spendingKeyB58);
+            intent.putExtra(IntentContract.ACCOUNT_INDEXES_EXTRA, accountIds.toArray());
+            intent.putExtra(ACCOUNT_KEYS, watchingKeysB58.toArray());
             intent.putExtra(CREATION_TIME_SECONDS_EXTRA, creationTimeSeconds);
             return intent;
         }
