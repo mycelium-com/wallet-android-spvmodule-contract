@@ -27,7 +27,6 @@ public interface IntentContract {
     String TRANSACTIONS = "TRANSACTIONS";
     String CONNECTED_OUTPUTS = "CONNECTED_OUTPUTS";
     String UTXOS = "UTXOS";
-    String CREATIONTIMESECONDS = "CREATIONTIMESECONDS";
 
     class BroadcastTransaction {
         public static final String ACTION = "com.mycelium.wallet.broadcastTransaction";
@@ -202,18 +201,5 @@ public interface IntentContract {
             return intent;
         }
 
-    }
-
-    class RequestAccountLevelKeysToSPV {
-        public static final String ACTION = "com.mycelium.wallet.requestAccountLevelKeysToSPV";
-
-        @Nullable
-        public static Intent createIntent(@NotNull ArrayList<Integer> accountIndexes,
-                                          @NotNull ArrayList<String> accountLevelKeys,
-                                          long creationTimeSeconds) {
-            Intent intent = new Intent(ACTION);
-            intent.putIntegerArrayListExtra(IntentContract.ACCOUNT_INDEXES_EXTRA, accountIndexes);
-            return intent;
-        }
     }
 }
