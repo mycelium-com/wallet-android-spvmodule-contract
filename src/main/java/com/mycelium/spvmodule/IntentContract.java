@@ -66,8 +66,8 @@ public interface IntentContract {
 
         public static Intent createIntent(List<Integer> accountIds, List<String> watchingKeysB58, long creationTimeSeconds) {
             Intent intent = new Intent(ACTION);
-            intent.putExtra(IntentContract.ACCOUNT_INDEXES_EXTRA, accountIds.toArray());
-            intent.putExtra(ACCOUNT_KEYS, watchingKeysB58.toArray());
+            intent.putIntegerArrayListExtra(IntentContract.ACCOUNT_INDEXES_EXTRA, new ArrayList<Integer>(accountIds));
+            intent.putStringArrayListExtra(ACCOUNT_KEYS, new ArrayList<String>(watchingKeysB58));
             intent.putExtra(CREATION_TIME_SECONDS_EXTRA, creationTimeSeconds);
             return intent;
         }
