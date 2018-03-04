@@ -86,6 +86,18 @@ public interface IntentContract {
         }
     }
 
+    class CreateUnsignedTransaction {
+        public static final String ACTION = "com.mycelium.wallet.createUnsignedTransaction";
+        public static final String TX_EXTRA = ACTION + "_tx";
+
+        public static Intent createIntent(int accountIndex, byte[] transaction) {
+            Intent intent = new Intent(ACTION);
+            intent.putExtra(ACCOUNT_INDEX_EXTRA, accountIndex);
+            intent.putExtra(TX_EXTRA, transaction);
+            return intent;
+        }
+    }
+
     class SendSignedTransactionToSPV {
         public static final String ACTION = "com.mycelium.wallet.sendSignedTransactionToSPV";
         public static final String TX_EXTRA = ACTION + "_tx";
