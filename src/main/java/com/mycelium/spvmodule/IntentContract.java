@@ -111,6 +111,19 @@ public interface IntentContract {
         }
     }
 
+    class SendSignedTransactionSingleAddressToSPV {
+        public static final String ACTION = "com.mycelium.wallet.sendSignedTransactionSingleAddressToSPV";
+        public static final String TX_EXTRA = ACTION + "_tx";
+        public static final String SINGLE_ADDRESS_GUID = ACTION + "_singleAddressGuid";
+
+        public static Intent createIntent(String guid, byte[] transaction) {
+            Intent intent = new Intent(ACTION);
+            intent.putExtra(SINGLE_ADDRESS_GUID, guid);
+            intent.putExtra(TX_EXTRA, transaction);
+            return intent;
+        }
+    }
+
     class RequestWalletSeed {
         public static final String ACTION = "com.mycelium.wallet.requestWalletSeed";
         public static final String BIP39_PASS_PHRASE_EXTRA = ACTION + "_bip39Passphrase";
