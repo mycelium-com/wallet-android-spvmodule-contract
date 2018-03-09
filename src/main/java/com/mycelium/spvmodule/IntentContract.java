@@ -2,9 +2,6 @@ package com.mycelium.spvmodule;
 
 import android.content.Intent;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -74,15 +71,15 @@ public interface IntentContract {
         }
     }
 
-    class RequestSingleAddressPrivateKeyToSPV {
-        public static final String ACTION = "com.mycelium.wallet.requestSingleAddressPrivateKeyToSPV";
+    class RequestSingleAddressPublicKeyToSPV {
+        public static final String ACTION = "com.mycelium.wallet.requestSingleAddressPublicKeyToSPV";
         public static final String SINGLE_ADDRESS_GUID = ACTION + "_singleAddressGuid";
-        public static final String PRIVATE_KEY = ACTION + "_data";
+        public static final String PUBLIC_KEY = ACTION + "_data";
 
-        public static Intent createIntent(String guid, byte[] private_key) {
+        public static Intent createIntent(String guid, byte[] public_key) {
             Intent intent = new Intent(ACTION);
             intent.putExtra(SINGLE_ADDRESS_GUID, guid);
-            intent.putExtra(PRIVATE_KEY, private_key);
+            intent.putExtra(PUBLIC_KEY, public_key);
             return intent;
         }
     }
