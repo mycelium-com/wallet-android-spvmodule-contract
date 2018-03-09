@@ -25,8 +25,9 @@ public interface IntentContract {
     String CONNECTED_OUTPUTS = "CONNECTED_OUTPUTS";
     String UTXOS = "UTXOS";
     String TRANSACTION_BYTES = "TRANSACTION_BYTES";
+    String ADDRESSES = "ADDRESSES";
 
-  class BroadcastTransaction {
+    class BroadcastTransaction {
         public static final String ACTION = "com.mycelium.wallet.broadcastTransaction";
         public static final String TX_EXTRA = ACTION + "_tx";
 
