@@ -2,6 +2,8 @@ package com.mycelium.spvmodule;
 
 import android.content.Intent;
 
+import org.jetbrains.annotations.Nullable;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,8 +28,9 @@ public interface IntentContract {
     String UTXOS = "UTXOS";
     String TRANSACTION_BYTES = "TRANSACTION_BYTES";
     String ADDRESSES = "ADDRESSES";
+    String UNSIGNED_TRANSACTION = "UNSIGNED_TRANSACTION";
 
-    class BroadcastTransaction {
+  class BroadcastTransaction {
         public static final String ACTION = "com.mycelium.wallet.broadcastTransaction";
         public static final String TX_EXTRA = ACTION + "_tx";
 
