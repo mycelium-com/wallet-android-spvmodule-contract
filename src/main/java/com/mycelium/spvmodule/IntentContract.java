@@ -14,6 +14,10 @@ public interface IntentContract {
     String SATOSHIS_RECEIVED = "satoshisReceived";
     String SATOSHIS_SENT = "satoshisSent";
     String ACCOUNTS_INDEX = "accountsIndex";
+    String OPERATION_ID = "operationId";
+    String TRANSACTION_HASH = "transactionHash";
+    String IS_SUCCESS = "is_success";
+    String MESSAGE = "message";
     String TRANSACTIONS = "TRANSACTIONS";
     String CONNECTED_OUTPUTS = "CONNECTED_OUTPUTS";
     String UTXOS = "UTXOS";
@@ -51,10 +55,12 @@ public interface IntentContract {
 
     class RequestPrivateExtendedKeyCoinTypeToMBW {
         public static final String ACTION = "com.mycelium.wallet.requestPrivateExtendedKeyCoinTypeToMBW";
+        public static final String CREATION_TIME_SECONDS_EXTRA = ACTION + "_creationTimeSeconds";
 
-        public static Intent createIntent(int accountId) {
+        public static Intent createIntent(int accountId, long creationTimeSeconds) {
             Intent intent = new Intent(ACTION);
             intent.putExtra(IntentContract.ACCOUNT_INDEX_EXTRA, accountId);
+            intent.putExtra(CREATION_TIME_SECONDS_EXTRA, creationTimeSeconds);
             return intent;
         }
     }
@@ -86,41 +92,18 @@ public interface IntentContract {
         }
     }
 
-    class RequestWalletSeed {
-        public static final String ACTION = "com.mycelium.wallet.requestWalletSeed";
-        public static final String BIP39_PASS_PHRASE_EXTRA = ACTION + "_bip39Passphrase";
-        public static final String CREATION_TIME_SECONDS_EXTRA = ACTION + "_creationTimeSeconds";
-
-        public static Intent createIntent(int accountId, ArrayList<String> bip39Passphrase, long creationTimeSeconds) {
-            Intent intent = new Intent(ACTION);
-            intent.putExtra(IntentContract.ACCOUNT_INDEX_EXTRA, accountId);
-            intent.putStringArrayListExtra(BIP39_PASS_PHRASE_EXTRA, bip39Passphrase);
-            intent.putExtra(CREATION_TIME_SECONDS_EXTRA, creationTimeSeconds);
-            return intent;
-        }
-    }
-
-    class SetPrivateKeyExtendedKeyCoinType {
-        public static final String ACTION = "com.mycelium.wallet.setPrivateKeyExtendedKeyCoinType";
-        public static final String PRIVATE_KEY = ACTION + "_data";
-
-        public static Intent createIntent(byte[] private_key) {
-            Intent intent = new Intent(ACTION);
-            intent.putExtra(PRIVATE_KEY, private_key);
-            return intent;
-        }
-    }
-
     class SendFunds {
         public static final String ACTION = "com.mycelium.wallet.sendFunds";
+        public static final String OPERATION_ID = ACTION + "_opId";
         public static final String ADDRESS_EXTRA = ACTION + "_address";
         public static final String AMOUNT_EXTRA = ACTION + "_amount";
         public static final String FEE_EXTRA = ACTION + "_fee";
         public static final String FEE_FACTOR_EXTRA = ACTION + "_fee_factor";
 
-        public static Intent createIntent(int accountId, String address, long amount, TransactionFee txFee, float txFeeFactor) {
+        public static Intent createIntent(String operationId, int accountId, String address, long amount, TransactionFee txFee, float txFeeFactor) {
             Intent intent = new Intent(ACTION);
             intent.putExtra(IntentContract.ACCOUNT_INDEX_EXTRA, accountId);
+            intent.putExtra(OPERATION_ID, operationId);
             intent.putExtra(ADDRESS_EXTRA, address);
             intent.putExtra(AMOUNT_EXTRA, amount);
             intent.putExtra(FEE_EXTRA, txFee.name());
@@ -131,13 +114,15 @@ public interface IntentContract {
 
     class SendFundsSingleAddress {
         public static final String ACTION = "com.mycelium.wallet.sendFundsSingleAddress";
+        public static final String OPERATION_ID = ACTION + "_opId";
         public static final String ADDRESS_EXTRA = ACTION + "_address";
         public static final String AMOUNT_EXTRA = ACTION + "_amount";
         public static final String FEE_EXTRA = ACTION + "_fee";
         public static final String FEE_FACTOR_EXTRA = ACTION + "_fee_factor";
 
-        public static Intent createIntent(String guid, String address, long amount, TransactionFee fee, float txFeeFactor) {
+        public static Intent createIntent(String operationId, String guid, String address, long amount, TransactionFee fee, float txFeeFactor) {
             Intent intent = new Intent(ACTION);
+            intent.putExtra(OPERATION_ID, operationId);
             intent.putExtra(IntentContract.SINGLE_ADDRESS_ACCOUNT_GUID, guid);
             intent.putExtra(ADDRESS_EXTRA, address);
             intent.putExtra(AMOUNT_EXTRA, amount);
@@ -185,5 +170,15 @@ public interface IntentContract {
             return intent;
         }
 
+    }
+
+    //This intent should be called when app is first started to ensure that no old data related to old app installations remains in modules.
+    class ForceCacheClean {
+        public static final String ACTION = "com.mycelium.wallet.forceCacheClean";
+
+        public static Intent createIntent() {
+            Intent intent = new Intent(ACTION);
+            return intent;
+        }
     }
 }
