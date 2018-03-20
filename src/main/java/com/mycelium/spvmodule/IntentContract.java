@@ -87,6 +87,20 @@ public interface IntentContract {
         }
     }
 
+    class RequestPrivateExtendedKeyCoinTypeToSPV {
+        public static final String ACTION = "com.mycelium.wallet.requestPrivateExtendedKeyCoinTypeToSPV";
+        public static final String SPENDING_KEY_B58_EXTRA = ACTION + "_spendingkeyb58";
+        public static final String CREATION_TIME_SECONDS_EXTRA = ACTION + "_creationTimeSeconds";
+
+        public static Intent createIntent(int accountId, String spendingKeyB58, long creationTimeSeconds) {
+            Intent intent = new Intent(ACTION);
+            intent.putExtra(IntentContract.ACCOUNT_INDEX_EXTRA, accountId);
+            intent.putExtra(SPENDING_KEY_B58_EXTRA, spendingKeyB58);
+            intent.putExtra(CREATION_TIME_SECONDS_EXTRA, creationTimeSeconds);
+            return intent;
+        }
+    }
+
     class RequestSingleAddressPublicKeyToSPV {
         public static final String ACTION = "com.mycelium.wallet.requestSingleAddressPublicKeyToSPV";
         public static final String SINGLE_ADDRESS_GUID = ACTION + "_singleAddressGuid";
@@ -96,6 +110,19 @@ public interface IntentContract {
             Intent intent = new Intent(ACTION);
             intent.putExtra(SINGLE_ADDRESS_GUID, guid);
             intent.putExtra(PUBLIC_KEY, public_key);
+            return intent;
+        }
+    }
+
+    class RequestSingleAddressPrivateKeyToSPV {
+        public static final String ACTION = "com.mycelium.wallet.requestSingleAddressPrivateKeyToSPV";
+        public static final String SINGLE_ADDRESS_GUID = ACTION + "_singleAddressGuid";
+        public static final String PRIVATE_KEY = ACTION + "_data";
+
+        public static Intent createIntent(String guid, byte[] private_key) {
+            Intent intent = new Intent(ACTION);
+            intent.putExtra(SINGLE_ADDRESS_GUID, guid);
+            intent.putExtra(PRIVATE_KEY, private_key);
             return intent;
         }
     }
@@ -218,17 +245,6 @@ public interface IntentContract {
         }
 
     }
-
-    //This intent should be called when app is first started to ensure that no old data related to old app installations remains in modules.
-    class ForceCacheClean {
-        public static final String ACTION = "com.mycelium.wallet.forceCacheClean";
-
-        public static Intent createIntent() {
-            Intent intent = new Intent(ACTION);
-            return intent;
-        }
-    }
-
     /**
      * This intent should be called when app is first started to ensure that no old data related to
      * old app installations remains in modules.
