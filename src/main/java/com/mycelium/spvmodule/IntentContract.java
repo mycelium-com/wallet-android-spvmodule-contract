@@ -192,6 +192,9 @@ public interface IntentContract {
         }
     }
 
+    /**
+     * Query the intents queue
+     */
     class WaitingIntents {
         public static final String ACTION = "com.mycelium.wallet.waitingIntents";
         public static final String RESULT_ACTION = "com.mycelium.wallet.waitingIntentsResult";
