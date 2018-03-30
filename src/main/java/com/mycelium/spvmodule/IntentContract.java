@@ -13,7 +13,6 @@ public interface IntentContract {
     String ACCOUNT_INDEXES_EXTRA = "ACCOUNT_INDEXES";
     String ACCOUNT_INDEX_EXTRA = "ACCOUNT_INDEX";
     String CREATIONTIMESECONDS = "CREATIONTIMESECONDS";
-    String ACCOUNT_GUID = "ACCOUNT_GUID";
     String SINGLE_ADDRESS_ACCOUNT_GUID = "SINGLE_ADDRESS_ACCOUNT_GUID";
     String SATOSHIS_RECEIVED = "satoshisReceived";
     String SATOSHIS_SENT = "satoshisSent";
@@ -42,9 +41,8 @@ public interface IntentContract {
     class ReceiveTransactions {
         public static final String ACTION = "com.mycelium.wallet.receiveTransactions";
 
-        public static Intent createIntent(String guid, int accountId) {
+        public static Intent createIntent(int accountId) {
             return new Intent(ACTION)
-                    .putExtra(IntentContract.ACCOUNT_GUID, guid)
                     .putExtra(IntentContract.ACCOUNT_INDEX_EXTRA, accountId);
         }
     }
@@ -63,9 +61,8 @@ public interface IntentContract {
         public static final String ACCOUNT_KEYS = ACTION + "_accountKeys";
         public static final String CREATION_TIME_SECONDS_EXTRA = ACTION + "_creationTimeSeconds";
 
-        public static Intent createIntent(String guid, List<Integer> accountIds, List<String> watchingKeysB58, long creationTimeSeconds) {
+        public static Intent createIntent(List<Integer> accountIds, List<String> watchingKeysB58, long creationTimeSeconds) {
             return new Intent(ACTION)
-                    .putExtra(IntentContract.ACCOUNT_GUID, guid)
                     .putIntegerArrayListExtra(IntentContract.ACCOUNT_INDEXES_EXTRA, new ArrayList<>(accountIds))
                     .putStringArrayListExtra(ACCOUNT_KEYS, new ArrayList<>(watchingKeysB58))
                     .putExtra(CREATION_TIME_SECONDS_EXTRA, creationTimeSeconds);
