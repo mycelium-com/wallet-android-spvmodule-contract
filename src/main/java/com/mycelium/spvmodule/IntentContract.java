@@ -99,9 +99,8 @@ public interface IntentContract {
         public static final String ACTION = "com.mycelium.wallet.sendSignedTransactionToSPV";
         public static final String TX_EXTRA = ACTION + "_tx";
 
-        public static Intent createIntent(String operationId, String guid, int accountIndex, byte[] transaction) {
+        public static Intent createIntent(String operationId, int accountIndex, byte[] transaction) {
             return new Intent(ACTION)
-                    .putExtra(ACCOUNT_GUID, guid)
                     .putExtra(ACCOUNT_INDEX_EXTRA, accountIndex)
                     .putExtra(OPERATION_ID, operationId)
                     .putExtra(TX_EXTRA, transaction);
@@ -129,10 +128,9 @@ public interface IntentContract {
         public static final String FEE_EXTRA = ACTION + "_fee";
         public static final String FEE_FACTOR_EXTRA = ACTION + "_fee_factor";
 
-        public static Intent createIntent(String operationId, String guid, int accountId, String address, long amount, TransactionFee txFee, float txFeeFactor) {
+        public static Intent createIntent(String operationId, int accountId, String address, long amount, TransactionFee txFee, float txFeeFactor) {
             return new Intent(ACTION)
                     .putExtra(IntentContract.ACCOUNT_INDEX_EXTRA, accountId)
-                    .putExtra(IntentContract.ACCOUNT_GUID, guid)
                     .putExtra(OPERATION_ID, operationId)
                     .putExtra(ADDRESS_EXTRA, address)
                     .putExtra(AMOUNT_EXTRA, amount)
