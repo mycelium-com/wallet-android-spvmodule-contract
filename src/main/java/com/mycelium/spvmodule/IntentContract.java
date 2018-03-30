@@ -69,8 +69,8 @@ public interface IntentContract {
         }
     }
 
-    class RequestSingleAddressPublicKeyToSPV {
-        public static final String ACTION = "com.mycelium.wallet.requestSingleAddressPublicKeyToSPV";
+    class SendSingleAddressPublicKeyToSPV {
+        public static final String ACTION = "com.mycelium.wallet.sendSingleAddressPublicKeyToSPV";
         public static final String SINGLE_ADDRESS_GUID = ACTION + "_singleAddressGuid";
         public static final String PUBLIC_KEY = ACTION + "_data";
 
@@ -78,6 +78,18 @@ public interface IntentContract {
             return new Intent(ACTION)
                     .putExtra(SINGLE_ADDRESS_GUID, guid)
                     .putExtra(PUBLIC_KEY, public_key);
+        }
+    }
+
+    class SendSingleAddressToSPV {
+        public static final String ACTION = "com.mycelium.wallet.requestSingleAddressPublicKeyToSPV";
+        public static final String SINGLE_ADDRESS_GUID = ACTION + "_singleAddressGuid";
+        public static final String ADDRESS_BYTES = ACTION + "_data";
+
+        public static Intent createIntent(String guid, byte[] address) {
+            return new Intent(ACTION)
+                .putExtra(SINGLE_ADDRESS_GUID, guid)
+                .putExtra(ADDRESS_BYTES, address);
         }
     }
 
