@@ -137,10 +137,11 @@ public class TransactionContract {
         public static final String SINGLE_ADDRESS_ACCOUNT_GUID = "singleAddressAccountGUID";
 
         public static final String SELECTION_ACCOUNT_INDEX = ACCOUNT_INDEX + " = ?";
+        public static final String SELECTION_ACCOUNT_GUID = SINGLE_ADDRESS_ACCOUNT_GUID + " = ?";
         public static final String SELECTION_TX_FEE = TX_FEE + " = ? AND " + TX_FEE_FACTOR + " = ?";
 
         public static final String SELECTION_HD = SELECTION_ACCOUNT_INDEX + " AND " + SELECTION_TX_FEE;
-        public static final String SELECTION_SA = SINGLE_ADDRESS_ACCOUNT_GUID + " AND " + SELECTION_TX_FEE;
+        public static final String SELECTION_SA = SELECTION_ACCOUNT_GUID + " AND " + SELECTION_TX_FEE;
 
         public static Uri CONTENT_URI(String packageName) {
             return Uri.withAppendedPath(AUTHORITY_URI(packageName), TABLE_NAME);
@@ -189,6 +190,48 @@ public class TransactionContract {
             return Uri.withAppendedPath(AUTHORITY_URI(packageName), TABLE_NAME);
         }
     }
+
+
+    public static class GetMaxFundsTransferrable {
+        public static final String TABLE_NAME = "getmaxfundstransferrable";
+
+        public static final String MAX_AMOUNT = "amount";
+
+        public static final String ACCOUNT_INDEX = "accountIndex";
+        public static final String SINGLE_ADDRESS_ACCOUNT_GUID = "singleAddressAccountGUID";
+
+        public static final String SELECTION_HD = ACCOUNT_INDEX + " = ?";
+        public static final String SELECTION_SA = SINGLE_ADDRESS_ACCOUNT_GUID + " = ?";
+
+
+        public static Uri CONTENT_URI(String packageName) {
+            return Uri.withAppendedPath(AUTHORITY_URI(packageName), TABLE_NAME);
+        }
+    }
+
+    public static class EstimateFeeFromTransferrableAmount {
+        public static final String TABLE_NAME = "estimatefeefromtransferrableamount";
+
+        public static final String ESTIMATED_FEE = "estimatedFee";
+
+        public static final String TX_FEE = "txFee";
+        public static final String TX_FEE_FACTOR = "txFeeFactor";
+        public static final String ACCOUNT_INDEX = "accountIndex";
+        public static final String SINGLE_ADDRESS_ACCOUNT_GUID = "singleAddressAccountGUID";
+
+        public static final String SELECTION_ACCOUNT_INDEX = ACCOUNT_INDEX + " = ?";
+        public static final String SELECTION_ACCOUNT_GUID = SINGLE_ADDRESS_ACCOUNT_GUID + " = ?";
+
+        public static final String SELECTION_TX_FEE = TX_FEE + " = ? AND " + TX_FEE_FACTOR + " = ?";
+
+        public static final String SELECTION_HD = SELECTION_ACCOUNT_INDEX + " AND " + SELECTION_TX_FEE;
+        public static final String SELECTION_SA = SELECTION_ACCOUNT_GUID + " AND " + SELECTION_TX_FEE;
+
+        public static Uri CONTENT_URI(String packageName) {
+            return Uri.withAppendedPath(AUTHORITY_URI(packageName), TABLE_NAME);
+        }
+    }
+
 
     public static class GetSyncProgress {
         public static final String TABLE_NAME = "getsyncprogress";
