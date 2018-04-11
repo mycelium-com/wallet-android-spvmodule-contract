@@ -47,7 +47,7 @@ public interface IntentContract {
         }
     }
 
-    class ReceiveTransactionsSingleAddress {
+    class ReceiveTransactionsUnrelated {
         public static final String ACTION = "com.mycelium.wallet.receiveTransactionsSingleAddress";
 
         public static Intent createIntent(String guid) {
@@ -69,7 +69,7 @@ public interface IntentContract {
         }
     }
 
-    class SendSingleAddressPublicKeyToSPV {
+    class SendUnrelatedPublicKeyToSPV {
         public static final String ACTION = "com.mycelium.wallet.sendSingleAddressPublicKeyToSPV";
         public static final String SINGLE_ADDRESS_GUID = ACTION + "_singleAddressGuid";
         public static final String PUBLIC_KEY = ACTION + "_data";
@@ -81,7 +81,7 @@ public interface IntentContract {
         }
     }
 
-    class SendSingleAddressToSPV {
+    class SendUnrelatedAddressToSPV {
         public static final String ACTION = "com.mycelium.wallet.requestSingleAddressPublicKeyToSPV";
         public static final String SINGLE_ADDRESS_GUID = ACTION + "_singleAddressGuid";
         public static final String ADDRESS_BYTES = ACTION + "_data";
@@ -116,7 +116,7 @@ public interface IntentContract {
         }
     }
 
-    class SendSignedTransactionSingleAddressToSPV {
+    class SendSignedTransactionUnrelatedToSPV {
         public static final String ACTION = "com.mycelium.wallet.sendSignedTransactionSingleAddressToSPV";
         public static final String TX_EXTRA = ACTION + "_tx";
         public static final String SINGLE_ADDRESS_GUID = ACTION + "_singleAddressGuid";
@@ -148,7 +148,7 @@ public interface IntentContract {
         }
     }
 
-    class SendFundsSingleAddress {
+    class SendFundsUnrelated {
         public static final String ACTION = "com.mycelium.wallet.sendFundsSingleAddress";
         public static final String OPERATION_ID = ACTION + "_opId";
         public static final String ADDRESS_EXTRA = ACTION + "_address";
@@ -196,7 +196,7 @@ public interface IntentContract {
         }
     }
 
-    class RemoveSingleAddressWalletAccount {
+    class RemoveUnrelatedAccount {
         public static final String ACTION = "com.mycelium.wallet.removeSingleAddressWalletAccount";
 
         public static Intent createIntent(String guid) {
