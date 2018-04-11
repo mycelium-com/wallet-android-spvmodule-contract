@@ -13,7 +13,8 @@ public interface IntentContract {
     String ACCOUNT_INDEXES_EXTRA = "ACCOUNT_INDEXES";
     String ACCOUNT_INDEX_EXTRA = "ACCOUNT_INDEX";
     String CREATIONTIMESECONDS = "CREATIONTIMESECONDS";
-    String SINGLE_ADDRESS_ACCOUNT_GUID = "SINGLE_ADDRESS_ACCOUNT_GUID";
+    String UNRELATED_ACCOUNT_GUID = "UNRELATED_ACCOUNT_GUID";
+    String UNRELATED_ACCOUNT_TYPE = "UNRELATED_ACCOUNT_TYPE";
     String SATOSHIS_RECEIVED = "satoshisReceived";
     String SATOSHIS_SENT = "satoshisSent";
     String ACCOUNTS_INDEX = "accountsIndex";
@@ -27,6 +28,9 @@ public interface IntentContract {
     String TRANSACTION_BYTES = "TRANSACTION_BYTES";
     String ADDRESSES = "ADDRESSES";
     String UNSIGNED_TRANSACTION = "UNSIGNED_TRANSACTION";
+
+    int UNRELATED_ACCOUNT_TYPE_HD = 0;
+    int UNRELATED_ACCOUNT_TYPE_SA = 1;
 
     class BroadcastTransaction {
         public static final String ACTION = "com.mycelium.wallet.broadcastTransaction";
@@ -52,7 +56,7 @@ public interface IntentContract {
 
         public static Intent createIntent(String guid) {
             return new Intent(ACTION)
-                    .putExtra(IntentContract.SINGLE_ADDRESS_ACCOUNT_GUID, guid);
+                    .putExtra(IntentContract.UNRELATED_ACCOUNT_GUID, guid);
         }
     }
 
@@ -71,24 +75,24 @@ public interface IntentContract {
 
     class SendUnrelatedPublicKeyToSPV {
         public static final String ACTION = "com.mycelium.wallet.sendSingleAddressPublicKeyToSPV";
-        public static final String SINGLE_ADDRESS_GUID = ACTION + "_singleAddressGuid";
+        public static final String UNRELATED_ACCOUNT_GUID = ACTION + "_singleAddressGuid";
         public static final String PUBLIC_KEY = ACTION + "_data";
 
         public static Intent createIntent(String guid, byte[] public_key) {
             return new Intent(ACTION)
-                    .putExtra(SINGLE_ADDRESS_GUID, guid)
+                    .putExtra(UNRELATED_ACCOUNT_GUID, guid)
                     .putExtra(PUBLIC_KEY, public_key);
         }
     }
 
     class SendUnrelatedAddressToSPV {
         public static final String ACTION = "com.mycelium.wallet.requestSingleAddressPublicKeyToSPV";
-        public static final String SINGLE_ADDRESS_GUID = ACTION + "_singleAddressGuid";
+        public static final String UNRELATED_ACCOUNT_GUID = ACTION + "_singleAddressGuid";
         public static final String ADDRESS_BYTES = ACTION + "_data";
 
         public static Intent createIntent(String guid, byte[] address) {
             return new Intent(ACTION)
-                .putExtra(SINGLE_ADDRESS_GUID, guid)
+                .putExtra(UNRELATED_ACCOUNT_GUID, guid)
                 .putExtra(ADDRESS_BYTES, address);
         }
     }
@@ -119,11 +123,11 @@ public interface IntentContract {
     class SendSignedTransactionUnrelatedToSPV {
         public static final String ACTION = "com.mycelium.wallet.sendSignedTransactionSingleAddressToSPV";
         public static final String TX_EXTRA = ACTION + "_tx";
-        public static final String SINGLE_ADDRESS_GUID = ACTION + "_singleAddressGuid";
+        public static final String UNRELATED_ACCOUNT_GUID = ACTION + "_singleAddressGuid";
 
         public static Intent createIntent(String operationId, String guid, byte[] transaction) {
             return new Intent(ACTION)
-                    .putExtra(SINGLE_ADDRESS_GUID, guid)
+                    .putExtra(UNRELATED_ACCOUNT_GUID, guid)
                     .putExtra(OPERATION_ID, operationId)
                     .putExtra(TX_EXTRA, transaction);
         }
@@ -159,7 +163,7 @@ public interface IntentContract {
         public static Intent createIntent(String operationId, String guid, String address, long amount, TransactionFee fee, float txFeeFactor) {
             return new Intent(ACTION)
                     .putExtra(OPERATION_ID, operationId)
-                    .putExtra(IntentContract.SINGLE_ADDRESS_ACCOUNT_GUID, guid)
+                    .putExtra(IntentContract.UNRELATED_ACCOUNT_GUID, guid)
                     .putExtra(ADDRESS_EXTRA, address)
                     .putExtra(AMOUNT_EXTRA, amount)
                     .putExtra(FEE_EXTRA, fee.name())
@@ -201,7 +205,7 @@ public interface IntentContract {
 
         public static Intent createIntent(String guid) {
             return new Intent(ACTION)
-                    .putExtra(IntentContract.SINGLE_ADDRESS_ACCOUNT_GUID, guid);
+                    .putExtra(IntentContract.UNRELATED_ACCOUNT_GUID, guid);
         }
 
     }
