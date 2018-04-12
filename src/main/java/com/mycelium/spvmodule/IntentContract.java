@@ -54,9 +54,12 @@ public interface IntentContract {
     class ReceiveTransactionsUnrelated {
         public static final String ACTION = "com.mycelium.wallet.receiveTransactionsSingleAddress";
 
-        public static Intent createIntent(String guid) {
+        public static Intent createIntent(String guid, int accountType) {
             return new Intent(ACTION)
-                    .putExtra(IntentContract.UNRELATED_ACCOUNT_GUID, guid);
+                    .putExtra(IntentContract.UNRELATED_ACCOUNT_GUID, guid)
+                    .putExtra(IntentContract.UNRELATED_ACCOUNT_TYPE, accountType)
+                    ;
+
         }
     }
 
@@ -76,12 +79,12 @@ public interface IntentContract {
     class SendUnrelatedPublicKeyToSPV {
         public static final String ACTION = "com.mycelium.wallet.sendSingleAddressPublicKeyToSPV";
         public static final String UNRELATED_ACCOUNT_GUID = ACTION + "_singleAddressGuid";
-        public static final String PUBLIC_KEY = ACTION + "_data";
+        public static final String PUBLIC_KEY_B58 = ACTION + "_data";
 
-        public static Intent createIntent(String guid, byte[] public_key) {
+        public static Intent createIntent(String guid, String pubKeyB58) {
             return new Intent(ACTION)
                     .putExtra(UNRELATED_ACCOUNT_GUID, guid)
-                    .putExtra(PUBLIC_KEY, public_key);
+                    .putExtra(PUBLIC_KEY_B58, pubKeyB58);
         }
     }
 
