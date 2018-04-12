@@ -81,10 +81,12 @@ public interface IntentContract {
         public static final String UNRELATED_ACCOUNT_GUID = ACTION + "_singleAddressGuid";
         public static final String PUBLIC_KEY_B58 = ACTION + "_data";
 
-        public static Intent createIntent(String guid, String pubKeyB58) {
+        public static Intent createIntent(String guid, String pubKeyB58, int accountType) {
             return new Intent(ACTION)
                     .putExtra(UNRELATED_ACCOUNT_GUID, guid)
-                    .putExtra(PUBLIC_KEY_B58, pubKeyB58);
+                    .putExtra(PUBLIC_KEY_B58, pubKeyB58)
+                    .putExtra(UNRELATED_ACCOUNT_TYPE, accountType)
+                    ;
         }
     }
 
