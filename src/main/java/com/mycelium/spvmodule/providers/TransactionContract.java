@@ -201,7 +201,7 @@ public class TransactionContract {
         public static final String SINGLE_ADDRESS_ACCOUNT_GUID = "singleAddressAccountGUID";
 
         public static final String SELECTION_HD = ACCOUNT_INDEX + " = ?";
-        public static final String SELECTION_SA = SINGLE_ADDRESS_ACCOUNT_GUID + " = ?";
+        public static final String SELECTION_UNRELATED = SINGLE_ADDRESS_ACCOUNT_GUID + " = ?";
 
 
         public static Uri CONTENT_URI(String packageName) {
