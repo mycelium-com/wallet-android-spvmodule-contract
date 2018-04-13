@@ -90,6 +90,18 @@ public interface IntentContract {
         }
     }
 
+    class SendUnrelatedWatchedAddressToSPV {
+        public static final String ACTION = "com.mycelium.wallet.requestSingleAddressPublicKeyToSPV";
+        public static final String UNRELATED_ACCOUNT_GUID = ACTION + "_singleAddressGuid";
+        public static final String ADDRESS = ACTION + "_address";
+
+        public static Intent createIntent(String guid, String address) {
+            return new Intent(ACTION)
+                    .putExtra(UNRELATED_ACCOUNT_GUID, guid)
+                    .putExtra(ADDRESS, address);
+        }
+    }
+
     class CreateUnsignedTransaction {
         public static final String ACTION = "com.mycelium.wallet.createUnsignedTransaction";
         public static final String TX_EXTRA = ACTION + "_tx";
