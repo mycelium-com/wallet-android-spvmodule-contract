@@ -225,7 +225,7 @@ public class TransactionContract {
         public static final String SELECTION_TX_FEE = TX_FEE + " = ? AND " + TX_FEE_FACTOR + " = ?";
 
         public static final String SELECTION_HD = SELECTION_ACCOUNT_INDEX + " AND " + SELECTION_TX_FEE;
-        public static final String SELECTION_SA = SELECTION_ACCOUNT_GUID + " AND " + SELECTION_TX_FEE;
+        public static final String SELECTION_UNRELATED = SELECTION_ACCOUNT_GUID + " AND " + SELECTION_TX_FEE;
 
         public static Uri CONTENT_URI(String packageName) {
             return Uri.withAppendedPath(AUTHORITY_URI(packageName), TABLE_NAME);
