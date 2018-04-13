@@ -82,7 +82,7 @@ public class TransactionContract {
 
         public static final String SELECTION_ACCOUNT_INDEX = ACCOUNT_INDEX + " = ?";
 
-        public static final String SELECTION_SINGLE_ADDRESS_ACCOUNT_GUID = SINGLE_ADDRESS_ACCOUNT_GUID + " = ?";
+        public static final String SELECTION_HD = SINGLE_ADDRESS_ACCOUNT_GUID + " = ?";
 
         public static Uri CONTENT_URI(String packageName) {
             return Uri.withAppendedPath(AUTHORITY_URI(packageName), TABLE_NAME);
@@ -101,7 +101,7 @@ public class TransactionContract {
 
         public static final String SELECTION_ACCOUNT_INDEX = ACCOUNT_INDEX + " = ?";
 
-        public static final String SELECTION_SINGLE_ADDRESS_ACCOUNT_GUID = SINGLE_ADDRESS_ACCOUNT_GUID + " = ?";
+        public static final String SELECTION_UNRELATED = SINGLE_ADDRESS_ACCOUNT_GUID + " = ?";
 
         public static Uri CONTENT_URI(String packageName) {
             return Uri.withAppendedPath(AUTHORITY_URI(packageName), TABLE_NAME);
@@ -248,6 +248,12 @@ public class TransactionContract {
         public static final String TABLE_NAME = "getprivatekeyscount";
 
         public static final String KEYS_COUNT = "keysCount";
+
+        public static final String ACCOUNT_INDEX = "accountIndex";
+        public static final String SELECTION_ACCOUNT_INDEX = ACCOUNT_INDEX + " = ?";
+
+        public static final String UNRELATED_ACCOUNT_GUID = "singleAddressAccountGUID";
+        public static final String SELECTION_UNRELATED = UNRELATED_ACCOUNT_GUID + " = ?";
 
         public static Uri CONTENT_URI(String packageName) {
             return Uri.withAppendedPath(AUTHORITY_URI(packageName), TABLE_NAME);
