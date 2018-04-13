@@ -152,15 +152,17 @@ public interface IntentContract {
         public static final String AMOUNT_EXTRA = ACTION + "_amount";
         public static final String FEE_EXTRA = ACTION + "_fee";
         public static final String FEE_FACTOR_EXTRA = ACTION + "_fee_factor";
+        public static final String ACCOUNT_TYPE = ACTION + "_account_type";
 
-        public static Intent createIntent(String operationId, String guid, String address, long amount, TransactionFee fee, float txFeeFactor) {
+        public static Intent createIntent(String operationId, String guid, String address, long amount, TransactionFee fee, float txFeeFactor, int accountType) {
             return new Intent(ACTION)
                     .putExtra(OPERATION_ID, operationId)
                     .putExtra(IntentContract.UNRELATED_ACCOUNT_GUID, guid)
                     .putExtra(ADDRESS_EXTRA, address)
                     .putExtra(AMOUNT_EXTRA, amount)
                     .putExtra(FEE_EXTRA, fee.name())
-                    .putExtra(FEE_FACTOR_EXTRA, txFeeFactor);
+                    .putExtra(FEE_FACTOR_EXTRA, txFeeFactor)
+                    .putExtra(ACCOUNT_TYPE, accountType);
         }
     }
 
