@@ -4,7 +4,6 @@ import android.content.ContentResolver;
 import android.net.Uri;
 
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 /**
  * The contract between the [TransactionContentProvider] and clients. Contains definitions
@@ -48,7 +47,7 @@ public class TransactionContract {
     }
 
     public static class TransactionDetails {
-        public static final String TABLE_NAME = "txndtls"; // "transaction" is an SQL reserved word.
+        public static final String TABLE_NAME = "txndtls";
         public static final String CONTENT_TYPE = ContentResolver.CURSOR_DIR_BASE_TYPE + "/vnd.com.mycelium.transaction";
 
         public static final String _ID = "_id";
@@ -70,7 +69,7 @@ public class TransactionContract {
     }
 
     public static class AccountBalance {
-        public static final String TABLE_NAME = "acntblc"; // "transaction" is an SQL reserved word.
+        public static final String TABLE_NAME = "acntblc";
         public static final String CONTENT_TYPE = ContentResolver.CURSOR_DIR_BASE_TYPE + "/vnd.com.mycelium.transaction";
 
         public static final String _ID = "_id";
@@ -82,7 +81,7 @@ public class TransactionContract {
 
         public static final String SELECTION_ACCOUNT_INDEX = ACCOUNT_INDEX + " = ?";
 
-        public static final String SELECTION_HD = SINGLE_ADDRESS_ACCOUNT_GUID + " = ?";
+        public static final String SELECTION_GUID = SINGLE_ADDRESS_ACCOUNT_GUID + " = ?";
 
         public static Uri CONTENT_URI(String packageName) {
             return Uri.withAppendedPath(AUTHORITY_URI(packageName), TABLE_NAME);

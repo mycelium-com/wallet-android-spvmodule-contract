@@ -29,8 +29,10 @@ public interface IntentContract {
     String ADDRESSES = "ADDRESSES";
     String UNSIGNED_TRANSACTION = "UNSIGNED_TRANSACTION";
 
-    int UNRELATED_ACCOUNT_TYPE_HD = 0;
-    int UNRELATED_ACCOUNT_TYPE_SA = 1;
+    // hierarchically deterministic (bip32/44/47)
+    int UNRELATED_ACCOUNT_TYPE_HD = 1;
+    // single address
+    int UNRELATED_ACCOUNT_TYPE_SA = 2;
 
     class BroadcastTransaction {
         public static final String ACTION = "com.mycelium.wallet.broadcastTransaction";
