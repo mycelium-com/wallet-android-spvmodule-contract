@@ -59,9 +59,7 @@ public interface IntentContract {
         public static Intent createIntent(String guid, int accountType) {
             return new Intent(ACTION)
                     .putExtra(IntentContract.UNRELATED_ACCOUNT_GUID, guid)
-                    .putExtra(IntentContract.UNRELATED_ACCOUNT_TYPE, accountType)
-                    ;
-
+                    .putExtra(IntentContract.UNRELATED_ACCOUNT_TYPE, accountType);
         }
     }
 
@@ -87,8 +85,7 @@ public interface IntentContract {
             return new Intent(ACTION)
                     .putExtra(UNRELATED_ACCOUNT_GUID, guid)
                     .putExtra(PUBLIC_KEY_B58, pubKeyB58)
-                    .putExtra(UNRELATED_ACCOUNT_TYPE, accountType)
-                    ;
+                    .putExtra(UNRELATED_ACCOUNT_TYPE, accountType);
         }
     }
 
