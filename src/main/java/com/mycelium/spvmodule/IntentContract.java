@@ -27,8 +27,9 @@ public interface IntentContract {
     String TRANSACTION_BYTES = "TRANSACTION_BYTES";
     String ADDRESSES = "ADDRESSES";
     String UNSIGNED_TRANSACTION = "UNSIGNED_TRANSACTION";
+    String RESET_BLOCKCHAIN_STATE = "RESET_BLOCKCHAIN_STATE";
 
-    class BroadcastTransaction {
+  class BroadcastTransaction {
         public static final String ACTION = "com.mycelium.wallet.broadcastTransaction";
         public static final String TX_EXTRA = ACTION + "_tx";
 
