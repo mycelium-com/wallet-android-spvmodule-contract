@@ -246,7 +246,8 @@ public class TransactionContract {
     public static class GetPrivateKeysCount {
         public static final String TABLE_NAME = "getprivatekeyscount";
 
-        public static final String KEYS_COUNT = "keysCount";
+        public static final String EXTERNAL_KEYS_COUNT = "externalKeysCount";
+        public static final String INTERNAL_KEYS_COUNT = "internalKeysCount";
 
         public static final String ACCOUNT_INDEX = "accountIndex";
         public static final String SELECTION_ACCOUNT_INDEX = ACCOUNT_INDEX + " = ?";
