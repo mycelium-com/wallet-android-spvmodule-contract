@@ -88,6 +88,17 @@ public class TransactionContract {
         }
     }
 
+    public static class BlockchainHeight {
+        public static final String TABLE_NAME = "blkhgt";
+        public static final String CONTENT_TYPE = ContentResolver.CURSOR_DIR_BASE_TYPE + "/vnd.com.mycelium.height";
+
+        public static final String HEIGHT = "height";
+
+        public static Uri CONTENT_URI(String packageName) {
+            return Uri.withAppendedPath(AUTHORITY_URI(packageName), TABLE_NAME);
+        }
+    }
+
     public static class CurrentReceiveAddress {
         public static final String TABLE_NAME = "receiveaddress";
         public static final String CONTENT_TYPE = ContentResolver.CURSOR_DIR_BASE_TYPE + "/vnd.com.mycelium.address";
