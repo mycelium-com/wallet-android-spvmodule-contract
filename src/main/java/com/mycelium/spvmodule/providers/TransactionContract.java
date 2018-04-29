@@ -4,7 +4,6 @@ import android.content.ContentResolver;
 import android.net.Uri;
 
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 /**
  * The contract between the [TransactionContentProvider] and clients. Contains definitions
@@ -48,7 +47,7 @@ public class TransactionContract {
     }
 
     public static class TransactionDetails {
-        public static final String TABLE_NAME = "txndtls"; // "transaction" is an SQL reserved word.
+        public static final String TABLE_NAME = "txndtls";
         public static final String CONTENT_TYPE = ContentResolver.CURSOR_DIR_BASE_TYPE + "/vnd.com.mycelium.transaction";
 
         public static final String _ID = "_id";
@@ -70,7 +69,7 @@ public class TransactionContract {
     }
 
     public static class AccountBalance {
-        public static final String TABLE_NAME = "acntblc"; // "transaction" is an SQL reserved word.
+        public static final String TABLE_NAME = "acntblc";
         public static final String CONTENT_TYPE = ContentResolver.CURSOR_DIR_BASE_TYPE + "/vnd.com.mycelium.transaction";
 
         public static final String _ID = "_id";
@@ -82,7 +81,18 @@ public class TransactionContract {
 
         public static final String SELECTION_ACCOUNT_INDEX = ACCOUNT_INDEX + " = ?";
 
-        public static final String SELECTION_SINGLE_ADDRESS_ACCOUNT_GUID = SINGLE_ADDRESS_ACCOUNT_GUID + " = ?";
+        public static final String SELECTION_GUID = SINGLE_ADDRESS_ACCOUNT_GUID + " = ?";
+
+        public static Uri CONTENT_URI(String packageName) {
+            return Uri.withAppendedPath(AUTHORITY_URI(packageName), TABLE_NAME);
+        }
+    }
+
+    public static class BlockchainHeight {
+        public static final String TABLE_NAME = "blkhgt";
+        public static final String CONTENT_TYPE = ContentResolver.CURSOR_DIR_BASE_TYPE + "/vnd.com.mycelium.height";
+
+        public static final String HEIGHT = "height";
 
         public static Uri CONTENT_URI(String packageName) {
             return Uri.withAppendedPath(AUTHORITY_URI(packageName), TABLE_NAME);
@@ -101,7 +111,7 @@ public class TransactionContract {
 
         public static final String SELECTION_ACCOUNT_INDEX = ACCOUNT_INDEX + " = ?";
 
-        public static final String SELECTION_SINGLE_ADDRESS_ACCOUNT_GUID = SINGLE_ADDRESS_ACCOUNT_GUID + " = ?";
+        public static final String SELECTION_UNRELATED = SINGLE_ADDRESS_ACCOUNT_GUID + " = ?";
 
         public static Uri CONTENT_URI(String packageName) {
             return Uri.withAppendedPath(AUTHORITY_URI(packageName), TABLE_NAME);
@@ -201,7 +211,7 @@ public class TransactionContract {
         public static final String SINGLE_ADDRESS_ACCOUNT_GUID = "singleAddressAccountGUID";
 
         public static final String SELECTION_HD = ACCOUNT_INDEX + " = ?";
-        public static final String SELECTION_SA = SINGLE_ADDRESS_ACCOUNT_GUID + " = ?";
+        public static final String SELECTION_UNRELATED = SINGLE_ADDRESS_ACCOUNT_GUID + " = ?";
 
 
         public static Uri CONTENT_URI(String packageName) {
@@ -225,7 +235,7 @@ public class TransactionContract {
         public static final String SELECTION_TX_FEE = TX_FEE + " = ? AND " + TX_FEE_FACTOR + " = ?";
 
         public static final String SELECTION_HD = SELECTION_ACCOUNT_INDEX + " AND " + SELECTION_TX_FEE;
-        public static final String SELECTION_SA = SELECTION_ACCOUNT_GUID + " AND " + SELECTION_TX_FEE;
+        public static final String SELECTION_UNRELATED = SELECTION_ACCOUNT_GUID + " AND " + SELECTION_TX_FEE;
 
         public static Uri CONTENT_URI(String packageName) {
             return Uri.withAppendedPath(AUTHORITY_URI(packageName), TABLE_NAME);
@@ -247,7 +257,14 @@ public class TransactionContract {
     public static class GetPrivateKeysCount {
         public static final String TABLE_NAME = "getprivatekeyscount";
 
-        public static final String KEYS_COUNT = "keysCount";
+        public static final String EXTERNAL_KEYS_COUNT = "externalKeysCount";
+        public static final String INTERNAL_KEYS_COUNT = "internalKeysCount";
+
+        public static final String ACCOUNT_INDEX = "accountIndex";
+        public static final String SELECTION_ACCOUNT_INDEX = ACCOUNT_INDEX + " = ?";
+
+        public static final String UNRELATED_ACCOUNT_GUID = "singleAddressAccountGUID";
+        public static final String SELECTION_UNRELATED = UNRELATED_ACCOUNT_GUID + " = ?";
 
         public static Uri CONTENT_URI(String packageName) {
             return Uri.withAppendedPath(AUTHORITY_URI(packageName), TABLE_NAME);
