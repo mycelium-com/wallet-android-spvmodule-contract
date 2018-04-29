@@ -28,6 +28,7 @@ public interface IntentContract {
     String TRANSACTION_BYTES = "TRANSACTION_BYTES";
     String ADDRESSES = "ADDRESSES";
     String UNSIGNED_TRANSACTION = "UNSIGNED_TRANSACTION";
+    String RESET_BLOCKCHAIN_STATE = "RESET_BLOCKCHAIN_STATE";
 
     // hierarchically deterministic (bip32/44/47)
     int UNRELATED_ACCOUNT_TYPE_HD = 1;
