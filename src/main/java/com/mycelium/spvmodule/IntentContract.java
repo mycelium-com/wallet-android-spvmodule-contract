@@ -13,7 +13,8 @@ public interface IntentContract {
     String ACCOUNT_INDEXES_EXTRA = "ACCOUNT_INDEXES";
     String ACCOUNT_INDEX_EXTRA = "ACCOUNT_INDEX";
     String CREATIONTIMESECONDS = "CREATIONTIMESECONDS";
-    String SINGLE_ADDRESS_ACCOUNT_GUID = "SINGLE_ADDRESS_ACCOUNT_GUID";
+    String UNRELATED_ACCOUNT_GUID = "UNRELATED_ACCOUNT_GUID";
+    String UNRELATED_ACCOUNT_TYPE = "UNRELATED_ACCOUNT_TYPE";
     String SATOSHIS_RECEIVED = "satoshisReceived";
     String SATOSHIS_SENT = "satoshisSent";
     String ACCOUNTS_INDEX = "accountsIndex";
@@ -27,6 +28,12 @@ public interface IntentContract {
     String TRANSACTION_BYTES = "TRANSACTION_BYTES";
     String ADDRESSES = "ADDRESSES";
     String UNSIGNED_TRANSACTION = "UNSIGNED_TRANSACTION";
+    String RESET_BLOCKCHAIN_STATE = "RESET_BLOCKCHAIN_STATE";
+
+    // hierarchically deterministic (bip32/44/47)
+    int UNRELATED_ACCOUNT_TYPE_HD = 1;
+    // single address
+    int UNRELATED_ACCOUNT_TYPE_SA = 2;
 
     class BroadcastTransaction {
         public static final String ACTION = "com.mycelium.wallet.broadcastTransaction";
@@ -47,12 +54,13 @@ public interface IntentContract {
         }
     }
 
-    class ReceiveTransactionsSingleAddress {
+    class ReceiveTransactionsUnrelated {
         public static final String ACTION = "com.mycelium.wallet.receiveTransactionsSingleAddress";
 
-        public static Intent createIntent(String guid) {
+        public static Intent createIntent(String guid, int accountType) {
             return new Intent(ACTION)
-                    .putExtra(IntentContract.SINGLE_ADDRESS_ACCOUNT_GUID, guid);
+                    .putExtra(IntentContract.UNRELATED_ACCOUNT_GUID, guid)
+                    .putExtra(IntentContract.UNRELATED_ACCOUNT_TYPE, accountType);
         }
     }
 
@@ -95,27 +103,28 @@ public interface IntentContract {
         }
     }
 
-    class SendSingleAddressPublicKeyToSPV {
+    class SendUnrelatedPublicKeyToSPV {
         public static final String ACTION = "com.mycelium.wallet.sendSingleAddressPublicKeyToSPV";
-        public static final String SINGLE_ADDRESS_GUID = ACTION + "_singleAddressGuid";
-        public static final String PUBLIC_KEY = ACTION + "_data";
+        public static final String UNRELATED_ACCOUNT_GUID = ACTION + "_singleAddressGuid";
+        public static final String PUBLIC_KEY_B58 = ACTION + "_data";
 
-        public static Intent createIntent(String guid, byte[] public_key) {
+        public static Intent createIntent(String guid, String pubKeyB58, int accountType) {
             return new Intent(ACTION)
-                    .putExtra(SINGLE_ADDRESS_GUID, guid)
-                    .putExtra(PUBLIC_KEY, public_key);
+                    .putExtra(UNRELATED_ACCOUNT_GUID, guid)
+                    .putExtra(PUBLIC_KEY_B58, pubKeyB58)
+                    .putExtra(UNRELATED_ACCOUNT_TYPE, accountType);
         }
     }
 
-    class SendSingleAddressToSPV {
+    class SendUnrelatedWatchedAddressToSPV {
         public static final String ACTION = "com.mycelium.wallet.requestSingleAddressPublicKeyToSPV";
-        public static final String SINGLE_ADDRESS_GUID = ACTION + "_singleAddressGuid";
-        public static final String ADDRESS_BYTES = ACTION + "_data";
+        public static final String UNRELATED_ACCOUNT_GUID = ACTION + "_singleAddressGuid";
+        public static final String ADDRESS = ACTION + "_address";
 
-        public static Intent createIntent(String guid, byte[] address) {
+        public static Intent createIntent(String guid, String address) {
             return new Intent(ACTION)
-                .putExtra(SINGLE_ADDRESS_GUID, guid)
-                .putExtra(ADDRESS_BYTES, address);
+                    .putExtra(UNRELATED_ACCOUNT_GUID, guid)
+                    .putExtra(ADDRESS, address);
         }
     }
 
@@ -155,14 +164,14 @@ public interface IntentContract {
         }
     }
 
-    class SendSignedTransactionSingleAddressToSPV {
+    class SendSignedTransactionUnrelatedToSPV {
         public static final String ACTION = "com.mycelium.wallet.sendSignedTransactionSingleAddressToSPV";
         public static final String TX_EXTRA = ACTION + "_tx";
-        public static final String SINGLE_ADDRESS_GUID = ACTION + "_singleAddressGuid";
+        public static final String UNRELATED_ACCOUNT_GUID = ACTION + "_singleAddressGuid";
 
         public static Intent createIntent(String operationId, String guid, byte[] transaction) {
             return new Intent(ACTION)
-                    .putExtra(SINGLE_ADDRESS_GUID, guid)
+                    .putExtra(UNRELATED_ACCOUNT_GUID, guid)
                     .putExtra(OPERATION_ID, operationId)
                     .putExtra(TX_EXTRA, transaction);
         }
@@ -187,22 +196,24 @@ public interface IntentContract {
         }
     }
 
-    class SendFundsSingleAddress {
+    class SendFundsUnrelated {
         public static final String ACTION = "com.mycelium.wallet.sendFundsSingleAddress";
         public static final String OPERATION_ID = ACTION + "_opId";
         public static final String ADDRESS_EXTRA = ACTION + "_address";
         public static final String AMOUNT_EXTRA = ACTION + "_amount";
         public static final String FEE_EXTRA = ACTION + "_fee";
         public static final String FEE_FACTOR_EXTRA = ACTION + "_fee_factor";
+        public static final String ACCOUNT_TYPE = ACTION + "_account_type";
 
-        public static Intent createIntent(String operationId, String guid, String address, long amount, TransactionFee fee, float txFeeFactor) {
+        public static Intent createIntent(String operationId, String guid, String address, long amount, TransactionFee fee, float txFeeFactor, int accountType) {
             return new Intent(ACTION)
                     .putExtra(OPERATION_ID, operationId)
-                    .putExtra(IntentContract.SINGLE_ADDRESS_ACCOUNT_GUID, guid)
+                    .putExtra(IntentContract.UNRELATED_ACCOUNT_GUID, guid)
                     .putExtra(ADDRESS_EXTRA, address)
                     .putExtra(AMOUNT_EXTRA, amount)
                     .putExtra(FEE_EXTRA, fee.name())
-                    .putExtra(FEE_FACTOR_EXTRA, txFeeFactor);
+                    .putExtra(FEE_FACTOR_EXTRA, txFeeFactor)
+                    .putExtra(ACCOUNT_TYPE, accountType);
         }
     }
 
@@ -235,12 +246,12 @@ public interface IntentContract {
         }
     }
 
-    class RemoveSingleAddressWalletAccount {
+    class RemoveUnrelatedAccount {
         public static final String ACTION = "com.mycelium.wallet.removeSingleAddressWalletAccount";
 
         public static Intent createIntent(String guid) {
             return new Intent(ACTION)
-                    .putExtra(IntentContract.SINGLE_ADDRESS_ACCOUNT_GUID, guid);
+                    .putExtra(IntentContract.UNRELATED_ACCOUNT_GUID, guid);
         }
 
     }
