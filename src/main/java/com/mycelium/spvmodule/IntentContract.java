@@ -228,4 +228,31 @@ public interface IntentContract {
             return new Intent(ACTION);
         }
     }
+
+    /**
+    * MyceliumIdTransfer is intended for myceliumId transfer from MBW to a module
+    */
+    class MyceliumIdTransfer {
+        public static final String ACTION = "com.mycelium.wallet.transferMyceliumId";
+        public static final String MYCELIUM_ID ="_myceliumId";
+
+        public static Intent createIntent(String myceliumId) {
+            return new Intent(ACTION).putExtra(MYCELIUM_ID, myceliumId);
+        }
+    }
+
+    /**
+     * TransferSignedData is intended for signed data transfer from MBW to a module.
+     * This data could be verified later inside the module using myceliumId
+     */
+    class TransferSignedData {
+        public static final String ACTION = "com.mycelium.wallet.transferSignedData";
+        public static final String SIGNATURE ="_signature";
+
+        public static Intent createIntent(String message, String signature) {
+            return new Intent(ACTION)
+                    .putExtra(SIGNATURE, signature)
+                    .putExtra(MESSAGE, message);
+        }
+    }
 }
