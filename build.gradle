@@ -1,6 +1,17 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
+buildscript {
+    repositories {
+        google()
+        jcenter()
+    }
+
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
 android {
     compileSdkVersion androidCompileSdkVersion
     buildToolsVersion androidSdkBuildVersion
