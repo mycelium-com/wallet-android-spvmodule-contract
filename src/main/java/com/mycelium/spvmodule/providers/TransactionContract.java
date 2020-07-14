@@ -16,6 +16,7 @@ public class TransactionContract {
 
         public static final String _ID = "_id";
         public static final String VALUE = "value";
+        public static final String SYMBOL = "symbol";
         public static final String IS_INCOMING = "isIncoming";
         public static final String TIME = "time";
         public static final String SINCE = "since";
@@ -76,6 +77,7 @@ public class TransactionContract {
         public static final String CONFIRMED = "confirmed";
         public static final String SENDING = "sending";
         public static final String RECEIVING = "receiving";
+        public static final String SYMBOL = "symbol";
         public static final String ACCOUNT_INDEX = "accountIndex";
         public static final String SINGLE_ADDRESS_ACCOUNT_GUID = "singleAddressAccountGUID";
 
@@ -143,6 +145,7 @@ public class TransactionContract {
         public static final String TX_FEE = "txFee";
         public static final String TX_FEE_FACTOR = "txFeeFactor";
         public static final String MAX_SPENDABLE = "maxSpendable";
+        public static final String SYMBOL = "symbol";
         public static final String ACCOUNT_INDEX = "accountIndex";
         public static final String SINGLE_ADDRESS_ACCOUNT_GUID = "singleAddressAccountGUID";
 
@@ -152,6 +155,8 @@ public class TransactionContract {
 
         public static final String SELECTION_HD = SELECTION_ACCOUNT_INDEX + " AND " + SELECTION_TX_FEE;
         public static final String SELECTION_SA = SELECTION_ACCOUNT_GUID + " AND " + SELECTION_TX_FEE;
+
+        public static final String SELECTION_COMPLETE = SELECTION_ACCOUNT_INDEX + " AND " + SELECTION_TX_FEE;
 
         public static Uri CONTENT_URI(String packageName) {
             return Uri.withAppendedPath(AUTHORITY_URI(packageName), TABLE_NAME);
